@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: grey;
+        }
+        .container{
+            /* margin: 0 auto;
+            width: 100%;*/
+
+            width: 300px;
+            height: auto;
+            padding: 10px;
+            margin: auto;
+        }
+        .inbox{
+            border: 2px dotted black;
+            float: left;
+            padding: 25px;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="inbox">
+            <div>
+                <h4>This is an checkbox layout</h4>
+            </div>
+            <div>
+                <p><input type="checkbox"> Check One</p>
+            </div>
+            <div>
+                <p><input type="checkbox"> Check Two</p>
+            </div>
+            <div>
+                <p><input type="checkbox"> Check Three</p>
+            </div>
+            <div>
+                <p><input type="checkbox"> Check Four</p>
+            </div>
+            <div>
+                <p><input type="checkbox"> Check Five</p>
+            </div>
+            <div>
+                <p><input type="checkbox"> Check Six</p>
+            </div>
+            <div>
+                <p><input type="checkbox"> Check Seven</p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+    checkboxes.forEach(cb => cb.addEventListener('click',handleCheck));
+    let lastChecked;
+
+    function handleCheck(e) {
+        let inBetween = false;
+        if(e.shiftKey && this.checked) {
+            checkboxes.forEach(checkbox => {
+                console.log(checkbox);
+                if(checkbox === this || checkbox === lastChecked){
+                    inBetween = !inBetween;
+                    console.log('inBetween checkboxes')
+                }
+                if(inBetween) {
+                    checkbox.checked = true;
+                }
+            })
+        }
+        lastChecked = this;
+    }
+</script>
+</html>
